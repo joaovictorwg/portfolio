@@ -46,7 +46,7 @@ type TreeCanopyProps = {
   count?: number;
   seed?: number;
   className?: string;
-  mode?: "crown" | "sides" | "ambient";
+  mode?: "crown" | "ambient";
   interactive?: boolean;
 };
 
@@ -88,21 +88,84 @@ const SIDE_CLUSTERS: Cluster[] = [
 ];
 
 const CROWN_LAYER_PROFILES: LayerProfile[] = [
-  { id: "back", share: 0.32, seedOffset: 0, sizeScale: 1.2, opacityScale: 0.58, clusterDrift: 0.018 },
-  { id: "middle", share: 0.37, seedOffset: 137, sizeScale: 1, opacityScale: 0.76, clusterDrift: 0.032 },
-  { id: "front", share: 0.31, seedOffset: 593, sizeScale: 0.78, opacityScale: 0.95, clusterDrift: 0.046 },
+  {
+    id: "back",
+    share: 0.32,
+    seedOffset: 0,
+    sizeScale: 1.2,
+    opacityScale: 0.58,
+    clusterDrift: 0.018,
+  },
+  {
+    id: "middle",
+    share: 0.37,
+    seedOffset: 137,
+    sizeScale: 1,
+    opacityScale: 0.76,
+    clusterDrift: 0.032,
+  },
+  {
+    id: "front",
+    share: 0.31,
+    seedOffset: 593,
+    sizeScale: 0.78,
+    opacityScale: 0.95,
+    clusterDrift: 0.046,
+  },
 ];
 
 const AMBIENT_LAYER_PROFILES: LayerProfile[] = [
-  { id: "back", share: 0.32, seedOffset: 41, sizeScale: 1.12, opacityScale: 0.38, clusterDrift: 0.012 },
-  { id: "middle", share: 0.37, seedOffset: 271, sizeScale: 0.9, opacityScale: 0.48, clusterDrift: 0.024 },
-  { id: "front", share: 0.31, seedOffset: 809, sizeScale: 0.72, opacityScale: 0.58, clusterDrift: 0.035 },
+  {
+    id: "back",
+    share: 0.32,
+    seedOffset: 41,
+    sizeScale: 1.12,
+    opacityScale: 0.38,
+    clusterDrift: 0.012,
+  },
+  {
+    id: "middle",
+    share: 0.37,
+    seedOffset: 271,
+    sizeScale: 0.9,
+    opacityScale: 0.48,
+    clusterDrift: 0.024,
+  },
+  {
+    id: "front",
+    share: 0.31,
+    seedOffset: 809,
+    sizeScale: 0.72,
+    opacityScale: 0.58,
+    clusterDrift: 0.035,
+  },
 ];
 
 const SIDE_LAYER_PROFILES: LayerProfile[] = [
-  { id: "back", share: 0.32, seedOffset: 71, sizeScale: 1.12, opacityScale: 0.34, clusterDrift: 0.012 },
-  { id: "middle", share: 0.37, seedOffset: 317, sizeScale: 0.96, opacityScale: 0.48, clusterDrift: 0.02 },
-  { id: "front", share: 0.31, seedOffset: 929, sizeScale: 0.8, opacityScale: 0.62, clusterDrift: 0.028 },
+  {
+    id: "back",
+    share: 0.32,
+    seedOffset: 71,
+    sizeScale: 1.12,
+    opacityScale: 0.34,
+    clusterDrift: 0.012,
+  },
+  {
+    id: "middle",
+    share: 0.37,
+    seedOffset: 317,
+    sizeScale: 0.96,
+    opacityScale: 0.48,
+    clusterDrift: 0.02,
+  },
+  {
+    id: "front",
+    share: 0.31,
+    seedOffset: 929,
+    sizeScale: 0.8,
+    opacityScale: 0.62,
+    clusterDrift: 0.028,
+  },
 ];
 
 const LEAF_COLORS = [
@@ -149,16 +212,41 @@ function generateLeaves(
   const clusterRandom = createRandom(seed ^ 0xa511e9b3);
   const variedClusters = clusters.map((cluster) => ({
     ...cluster,
-    x: clamp(cluster.x + randomBetween(clusterRandom, -profile.clusterDrift, profile.clusterDrift), 0.04, 0.96),
-    y: clamp(cluster.y + randomBetween(clusterRandom, -profile.clusterDrift, profile.clusterDrift), 0.3, 0.92),
+    x: clamp(
+      cluster.x +
+        randomBetween(
+          clusterRandom,
+          -profile.clusterDrift,
+          profile.clusterDrift,
+        ),
+      0.04,
+      0.96,
+    ),
+    y: clamp(
+      cluster.y +
+        randomBetween(
+          clusterRandom,
+          -profile.clusterDrift,
+          profile.clusterDrift,
+        ),
+      0.3,
+      0.92,
+    ),
     rx: cluster.rx * randomBetween(clusterRandom, 0.92, 1.08),
     ry: cluster.ry * randomBetween(clusterRandom, 0.92, 1.08),
   }));
-  const totalWeight = variedClusters.reduce((sum, cluster) => sum + cluster.weight, 0);
+  const totalWeight = variedClusters.reduce(
+    (sum, cluster) => sum + cluster.weight,
+    0,
+  );
   const leaves: Leaf[] = [];
   const maxAttempts = count * 30;
 
-  for (let attempt = 0; attempt < maxAttempts && leaves.length < count; attempt++) {
+  for (
+    let attempt = 0;
+    attempt < maxAttempts && leaves.length < count;
+    attempt++
+  ) {
     let selection = random() * totalWeight;
     let cluster = variedClusters[0];
 
@@ -200,27 +288,36 @@ function generateLayers(
   seed: number,
   mode: "crown" | "ambient",
 ): CanopyLayer[] {
-  const profiles = mode === "crown"
-    ? CROWN_LAYER_PROFILES
-    : mode === "sides"
-      ? SIDE_LAYER_PROFILES
-      : AMBIENT_LAYER_PROFILES;
-  const clusters = mode === "crown"
-    ? CLUSTERS
-    : mode === "sides"
-      ? SIDE_CLUSTERS
-      : AMBIENT_CLUSTERS;
+  const profiles =
+    mode === "crown"
+      ? CROWN_LAYER_PROFILES
+      : mode === "ambient"
+        ? SIDE_LAYER_PROFILES
+        : AMBIENT_LAYER_PROFILES;
+  const clusters =
+    mode === "crown"
+      ? CLUSTERS
+      : mode === "ambient"
+        ? SIDE_CLUSTERS
+        : AMBIENT_CLUSTERS;
   let assigned = 0;
 
   return profiles.map((profile, index) => {
-    const layerCount = index === profiles.length - 1
-      ? count - assigned
-      : Math.floor(count * profile.share);
+    const layerCount =
+      index === profiles.length - 1
+        ? count - assigned
+        : Math.floor(count * profile.share);
     assigned += layerCount;
 
     return {
       ...profile,
-      leaves: generateLeaves(layerCount, seed + profile.seedOffset, profile, index, clusters),
+      leaves: generateLeaves(
+        layerCount,
+        seed + profile.seedOffset,
+        profile,
+        index,
+        clusters,
+      ),
     };
   });
 }
@@ -240,7 +337,8 @@ export function TreeCanopy({
     getClientMountSnapshot,
     getServerMountSnapshot,
   );
-  const leafCount = count ?? (mode === "crown" ? 600 : mode === "sides" ? 300 : 60);
+  const leafCount =
+    count ?? (mode === "crown" ? 600 : mode === "ambient" ? 300 : 60);
   const isInteractive = interactive ?? mode !== "ambient";
   const layers = useMemo(
     () => generateLayers(leafCount, seed, mode),
@@ -248,107 +346,131 @@ export function TreeCanopy({
   );
 
   const resetWind = useCallback(() => {
-    activeLeavesRef.current.forEach((leaf) => leaf.style.setProperty("--wind-angle", "0deg"));
+    activeLeavesRef.current.forEach((leaf) =>
+      leaf.style.setProperty("--wind-angle", "0deg"),
+    );
     activeLeavesRef.current.clear();
   }, []);
 
-  const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
-    if (!isInteractive) return;
-    if (event.pointerType !== "mouse") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const handlePointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      if (!isInteractive) return;
+      if (event.pointerType !== "mouse") return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const canopy = canopyRef.current;
-    if (!canopy) return;
+      const canopy = canopyRef.current;
+      if (!canopy) return;
 
-    const rect = canopy.getBoundingClientRect();
-    const pointerX = event.clientX - rect.left;
-    const pointerY = event.clientY - rect.top;
+      const rect = canopy.getBoundingClientRect();
+      const pointerX = event.clientX - rect.left;
+      const pointerY = event.clientY - rect.top;
 
-    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
 
-    frameRef.current = requestAnimationFrame(() => {
-      const influenceRadius = 145;
-      const maxAngle = 12;
-      const previous = activeLeavesRef.current;
-      const next = new Set<HTMLElement>();
+      frameRef.current = requestAnimationFrame(() => {
+        const influenceRadius = 145;
+        const maxAngle = 12;
+        const previous = activeLeavesRef.current;
+        const next = new Set<HTMLElement>();
 
-      canopy.querySelectorAll<HTMLElement>(".tree-canopy__leaf").forEach((leaf) => {
-        const x = Number(leaf.dataset.x) * rect.width;
-        const y = Number(leaf.dataset.y) * rect.height;
-        const dx = x - pointerX;
-        const dy = y - pointerY;
-        const distance = Math.hypot(dx, dy);
+        canopy
+          .querySelectorAll<HTMLElement>(".tree-canopy__leaf")
+          .forEach((leaf) => {
+            const x = Number(leaf.dataset.x) * rect.width;
+            const y = Number(leaf.dataset.y) * rect.height;
+            const dx = x - pointerX;
+            const dy = y - pointerY;
+            const distance = Math.hypot(dx, dy);
 
-        if (distance >= influenceRadius) {
-          if (previous.has(leaf)) leaf.style.setProperty("--wind-angle", "0deg");
-          return;
-        }
+            if (distance >= influenceRadius) {
+              if (previous.has(leaf))
+                leaf.style.setProperty("--wind-angle", "0deg");
+              return;
+            }
 
-        const influence = 1 - distance / influenceRadius;
-        const direction = dx === 0 ? 1 : Math.sign(dx);
-        const angle = direction * maxAngle * influence * influence;
-        leaf.style.setProperty("--wind-angle", `${angle.toFixed(2)}deg`);
-        next.add(leaf);
+            const influence = 1 - distance / influenceRadius;
+            const direction = dx === 0 ? 1 : Math.sign(dx);
+            const angle = direction * maxAngle * influence * influence;
+            leaf.style.setProperty("--wind-angle", `${angle.toFixed(2)}deg`);
+            next.add(leaf);
+          });
+
+        activeLeavesRef.current = next;
+        frameRef.current = null;
       });
+    },
+    [isInteractive],
+  );
 
-      activeLeavesRef.current = next;
-      frameRef.current = null;
-    });
-  }, [isInteractive]);
-
-  useEffect(() => () => {
-    if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
-    activeLeavesRef.current.clear();
-  }, []);
+  useEffect(
+    () => () => {
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+      activeLeavesRef.current.clear();
+    },
+    [],
+  );
 
   return (
     <div
       ref={canopyRef}
-      className={`tree-canopy ${mode === "ambient" ? "tree-canopy--ambient" : ""} ${mode === "sides" ? "tree-canopy--sides" : ""} ${className}`.trim()}
+      className={`tree-canopy ${mode === "ambient" ? "tree-canopy--ambient" : ""} ${mode === "ambient" ? "tree-canopy--sides" : ""} ${className}`.trim()}
       onPointerMove={isInteractive ? handlePointerMove : undefined}
       onPointerLeave={isInteractive ? resetWind : undefined}
       aria-hidden="true"
     >
-      {mounted ? layers.map((layer, layerIndex) => (
-        <span key={layer.id} className="tree-canopy__layer" style={{ zIndex: layerIndex }}>
-          {layer.leaves.map((leaf) => {
-            const style = {
-              left: `${leaf.x * 100}%`,
-              top: `${leaf.y * 100}%`,
-              zIndex: Math.round(leaf.y * 1000),
-              "--leaf-size": leaf.size,
-              "--base-rotation": `${leaf.rotation.toFixed(1)}deg`,
-              "--leaf-opacity": leaf.opacity,
-              "--leaf-color": leaf.color,
-              "--wind-angle": "0deg",
-              "--sway-delay": leaf.swayDelay,
-            } as CSSProperties;
+      {mounted
+        ? layers.map((layer, layerIndex) => (
+            <span
+              key={layer.id}
+              className="tree-canopy__layer"
+              style={{ zIndex: layerIndex }}
+            >
+              {layer.leaves.map((leaf) => {
+                const style = {
+                  left: `${leaf.x * 100}%`,
+                  top: `${leaf.y * 100}%`,
+                  zIndex: Math.round(leaf.y * 1000),
+                  "--leaf-size": leaf.size,
+                  "--base-rotation": `${leaf.rotation.toFixed(1)}deg`,
+                  "--leaf-opacity": leaf.opacity,
+                  "--leaf-color": leaf.color,
+                  "--wind-angle": "0deg",
+                  "--sway-delay": leaf.swayDelay,
+                } as CSSProperties;
 
-            return (
-              <span
-                key={`${layer.id}-${leaf.id}`}
-                className={`tree-canopy__leaf ${mode === "crown" && leaf.sways ? "tree-canopy__leaf--sway" : ""}`}
-                data-x={leaf.x}
-                data-y={leaf.y}
-                style={style}
-              >
-                <svg viewBox="0 0 28 28" className="tree-canopy__shape" fill="none">
-                  <path d="M 4 24 C 4 14, 10 5, 23 3 C 25 14, 19 23, 4 24 Z" fill="var(--leaf-color)" />
-                  {mode !== "ambient" ? (
-                    <path
-                      d="M 5 23 C 11 16, 16 10, 22 4 M 12 15 L 11 8 M 16 11 L 22 12"
-                      stroke="var(--background)"
-                      strokeOpacity="0.55"
-                      strokeWidth="1.15"
-                      strokeLinecap="round"
-                    />
-                  ) : null}
-                </svg>
-              </span>
-            );
-          })}
-        </span>
-      )) : null}
+                return (
+                  <span
+                    key={`${layer.id}-${leaf.id}`}
+                    className={`tree-canopy__leaf ${mode === "crown" && leaf.sways ? "tree-canopy__leaf--sway" : ""}`}
+                    data-x={leaf.x}
+                    data-y={leaf.y}
+                    style={style}
+                  >
+                    <svg
+                      viewBox="0 0 28 28"
+                      className="tree-canopy__shape"
+                      fill="none"
+                    >
+                      <path
+                        d="M 4 24 C 4 14, 10 5, 23 3 C 25 14, 19 23, 4 24 Z"
+                        fill="var(--leaf-color)"
+                      />
+                      {mode !== "ambient" ? (
+                        <path
+                          d="M 5 23 C 11 16, 16 10, 22 4 M 12 15 L 11 8 M 16 11 L 22 12"
+                          stroke="var(--background)"
+                          strokeOpacity="0.55"
+                          strokeWidth="1.15"
+                          strokeLinecap="round"
+                        />
+                      ) : null}
+                    </svg>
+                  </span>
+                );
+              })}
+            </span>
+          ))
+        : null}
     </div>
   );
 }
