@@ -183,8 +183,8 @@ export const profile: Profile = {
     },
   ],
   links: {
-    github: "https://github.com/jvict",
-    linkedin: "https://www.linkedin.com/in/jvict",
+    github: "https://github.com/joaovictorwg",
+    linkedin: "https://www.linkedin.com/in/joao-victor-walcacer-giani/",
     email: "mailto:joaovictorgiani@gmail.com",
   },
   resume: {

@@ -17,11 +17,11 @@ export function ProjectCard({
   const cover = project.images[0];
 
   return (
-    <InteractiveTilt className="group flex flex-col gap-3 overflow-hidden rounded-2xl border border-border bg-surface/90 p-5 transition duration-300 hover:border-accent/60">
+    <InteractiveTilt className="project-card-modular group flex h-[540px] flex-col gap-3 overflow-hidden border-2 bg-background p-5 shadow-[6px_6px_0_var(--foreground)] transition duration-300 hover:translate-x-1 hover:translate-y-1 hover:bg-sage hover:shadow-none sm:h-[560px]">
       {cover ? (
         <Link
           href={`/projects/${project.slug}`}
-          className="relative -mx-5 -mt-5 mb-1 block aspect-[16/9] overflow-hidden border-b border-border bg-background"
+          className="relative -mx-5 -mt-5 mb-1 block aspect-[16/9] overflow-hidden border-b-2 border-ink bg-background"
           aria-label={localize(project.title, locale)}
         >
           <Image
@@ -55,7 +55,7 @@ export function ProjectCard({
       </div>
       <Link
         href={`/projects/${project.slug}`}
-        className="mt-3 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-4 py-2 text-xs font-medium text-accent-fg transition duration-300 hover:brightness-110"
+          className="mt-3 inline-flex w-fit items-center gap-2 border-2 border-ink bg-accent px-4 py-2 text-xs font-medium text-accent-fg shadow-[4px_4px_0_var(--foreground)] transition duration-300 hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
       >
         <span
           aria-hidden="true"

@@ -1,4 +1,8 @@
 import type { Project } from "../types";
+import hipertensaoImg from "../../../imgs/doencas_cronicas/hipertensao_por_regiao_novo.png";
+import featureImportanceImg from "../../../imgs/doencas_cronicas/random_feature_importance_novo.png";
+import oddsRatioImg from "../../../imgs/doencas_cronicas/lasso_odds_ratio_novo.png";
+import fairnessImg from "../../../imgs/doencas_cronicas/random_fairness_novo.png";
 
 export const predicaoDoencas: Project = {
   id: "predicao-doencas",
@@ -44,7 +48,36 @@ export const predicaoDoencas: Project = {
       "Report performance differences across education-level groups, because the aggregate number hides exactly what the research set out to show.",
     ],
   },
-  images: [],
+  images: [
+    {
+      src: hipertensaoImg.src,
+      alt: {
+        pt: "Hipertensão por região no estado do Tocantins",
+        en: "Hypertension by region in the state of Tocantins",
+      },
+    },
+    {
+      src: featureImportanceImg.src,
+      alt: {
+        pt: "Importância das variáveis no modelo Random Forest",
+        en: "Feature importance in the Random Forest model",
+      },
+    },
+    {
+      src: oddsRatioImg.src,
+      alt: {
+        pt: "Razão de chances (odds ratio) dos determinantes sociais",
+        en: "Odds ratio of the social determinants",
+      },
+    },
+    {
+      src: fairnessImg.src,
+      alt: {
+        pt: "Análise de equidade do modelo Random Forest",
+        en: "Fairness analysis of the Random Forest model",
+      },
+    },
+  ],
   links: {
     demo: null,
     github: null,

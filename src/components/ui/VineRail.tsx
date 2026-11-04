@@ -166,25 +166,27 @@ function VineLeaf({
   grow,
   from,
   index,
+  sway = false,
 }: {
   spec: LeafSpec;
   grow: MotionValue<number>;
   from: number;
   index: number;
+  sway?: boolean;
 }) {
   const transform = `translate(${spec.x} ${spec.y}) rotate(${spec.rotate}) scale(${
     spec.mirror ? -spec.size : spec.size
   } ${spec.size})`;
-  const sway = {
+  const swayStyle = {
     animationDelay: `${-((index * 1.7) % 5).toFixed(1)}s`,
     animationDuration: `${(4.4 + (index % 5) * 0.8).toFixed(1)}s`,
   };
 
-  return (
-    <Growing grow={grow} from={from} x={spec.x} y={spec.y}>
-      <g transform={transform}>
-        <g className="vine-leaf">
-          <g className="vine-sway" style={sway}>
+  const inner = (
+    <g transform={transform}>
+      <g className="vine-leaf">
+        {sway ? (
+          <g className="vine-sway" style={swayStyle}>
             <path d={LEAF_PATH} className={spec.fill} />
             <path
               d={LEAF_VEINS}
@@ -195,8 +197,26 @@ function VineLeaf({
               strokeLinecap="round"
             />
           </g>
-        </g>
+        ) : (
+          <>
+            <path d={LEAF_PATH} className={spec.fill} />
+            <path
+              d={LEAF_VEINS}
+              fill="none"
+              stroke="var(--background)"
+              strokeOpacity="0.75"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+            />
+          </>
+        )}
       </g>
+    </g>
+  );
+
+  return (
+    <Growing grow={grow} from={from} x={spec.x} y={spec.y}>
+      {inner}
     </Growing>
   );
 }
@@ -314,7 +334,14 @@ function VineSvg({
         const key = `${element.kind}-${index}`;
         if (element.kind === "leaf") {
           return (
-            <VineLeaf key={key} spec={element.spec} grow={grow} from={from} index={index} />
+            <VineLeaf
+              key={key}
+              spec={element.spec}
+              grow={grow}
+              from={from}
+              index={index}
+              sway={!element.spec.fill.includes("/")}
+            />
           );
         }
         if (element.kind === "tendril") {

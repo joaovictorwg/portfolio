@@ -40,7 +40,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   const t = await getTranslations("Projects");
 
   return (
-    <article className="mx-auto max-w-4xl px-4 py-16 md:px-6 md:py-24">
+    <article className="mx-auto w-full max-w-6xl px-6 py-16 md:px-10 md:py-24 lg:px-16">
       <Reveal>
         <Link href="/projects" className="text-sm text-muted hover:text-foreground">
           ← {t("back")}
@@ -108,6 +108,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                       src={image.src}
                       alt={localize(image.alt, locale)}
                       fill
+                      loading="eager"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       className="object-cover"
                     />

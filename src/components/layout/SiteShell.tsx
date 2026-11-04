@@ -13,7 +13,7 @@ export async function SiteShell({ children }: { children: React.ReactNode }) {
       <AmbientFoliage />
       <SkipLink label={t("skip")} />
       <Header name={profile.shortName} />
-      <main id="content" className="flex-1">
+      <main id="content" className="mx-auto w-full max-w-[1360px] flex-1">
         {children}
       </main>
       <Footer />

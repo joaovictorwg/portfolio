@@ -27,18 +27,18 @@ export function Header({ name }: { name: string }) {
   });
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95">
       <motion.div
         aria-hidden="true"
         style={{ scaleX: progress }}
         className="absolute inset-x-0 top-0 h-0.5 origin-left bg-accent"
       />
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
+      <div className="mx-auto flex w-full max-w-[1360px] items-center justify-between gap-4 px-8 py-3 md:px-12 lg:px-16 xl:px-20">
         <a href={homeHref("top")} className="font-display text-xl font-semibold tracking-tight transition-colors hover:text-signal">
           {name}
         </a>
         <nav
-          className="hidden items-center gap-5 text-sm text-muted md:flex"
+          className="ml-10 hidden items-center gap-5 text-sm text-muted md:flex"
           aria-label={t("primaryNav")}
         >
           {links.map((link) => (

@@ -8,3 +8,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000` (redirects to `/pt`).
+
+
+
+DEIXAR O VERDE DO TEMA CLARO UM POUCO MAIS CLARO, MUDAR A FONTE, AJUSTAR A DISPOSIÇÃO DAS COISAS EM TELA

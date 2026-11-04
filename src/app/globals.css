@@ -2,29 +2,29 @@
 
 /* Light (default): off-white base, green only in the details */
 :root {
-  --background: #f5f3ea;
-  --foreground: #161a10;
-  --muted: #565c4c;
-  --surface: #eeece1;
-  --border: #d5d0c0;
-  --accent: #2c4a12;
+  --background: #f3f0e5;
+  --foreground: #20251d;
+  --muted: #56604e;
+  --surface: #dce2cd;
+  --border: #20251d;
+  --accent: #263f24;
   --accent-fg: #f5f3ea;
-  --signal: #4c6620;
+  --signal: #718653;
   --signal-fg: #f5f3ea;
-  --ring: #4c6620;
-  --wood: #7a6242;
+  --ring: #718653;
+  --wood: #b87955;
 }
 
 /* Dark: neutral charcoal base, green only in the details */
 .dark {
-  --background: #131412;
+  --background: #172016;
   --foreground: #eceadd;
   --muted: #9b9d8f;
-  --surface: #1b1c19;
-  --border: #34382e;
-  --accent: #6d8f36;
+  --surface: #263f24;
+  --border: #a1ad86;
+  --accent: #718653;
   --accent-fg: #0f1109;
-  --signal: #95ad5e;
+  --signal: #a1ad86;
   --signal-fg: #131412;
   --ring: #95ad5e;
   --wood: #a3855c;
@@ -42,9 +42,13 @@
   --color-signal-fg: var(--signal-fg);
   --color-ring: var(--ring);
   --color-wood: var(--wood);
-  --font-sans: var(--font-outfit);
-  --font-mono: var(--font-geist-mono);
-  --font-display: var(--font-cormorant);
+  --color-ink: var(--foreground);
+  --color-sage: #dce2cd;
+  --color-olive: #718653;
+  --color-terracotta: #b87955;
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-ibm-plex-mono);
+  --font-display: var(--font-space-grotesk);
 }
 
 html {
@@ -68,23 +72,24 @@ html {
 body {
   min-height: 100%;
   background-color: var(--background);
-  background-image:
-    radial-gradient(ellipse at 12% -10%, color-mix(in srgb, var(--signal) 14%, transparent), transparent 36rem),
-    radial-gradient(ellipse at 100% 42%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 34rem);
-  background-attachment: fixed;
   color: var(--foreground);
   font-family: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
 }
 
-.forest-cursor-glow {
-  background: radial-gradient(
-    circle,
-    color-mix(in srgb, var(--signal) 18%, transparent) 0%,
-    color-mix(in srgb, var(--accent) 11%, transparent) 42%,
-    transparent 72%
-  );
-  filter: blur(18px);
-  opacity: 0.8;
+/*
+ * Fixed glow layer — same visuals as `background-attachment: fixed`, but
+ * composited once. That property repaints the whole background on every
+ * scroll frame and is a major source of jank at high devicePixelRatio.
+ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 12% -10%, color-mix(in srgb, var(--signal) 14%, transparent), transparent 36rem),
+    radial-gradient(ellipse at 100% 42%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 34rem);
 }
 
 /* Vine leaves: CSS-only hover (SVG transform attributes must stay untouched) */
@@ -146,7 +151,8 @@ body {
   z-index: -1;
   pointer-events: none;
   opacity: 0.8;
-  filter: blur(12px);
+  /* No filter: radial gradients are already smooth, and blurring a
+     full-width layer costs a huge raster (and repaints on invalidation). */
   background:
     radial-gradient(ellipse 22% 32% at 14% 46%, color-mix(in srgb, var(--signal) 13%, transparent), transparent 100%),
     radial-gradient(ellipse 25% 36% at 35% 42%, color-mix(in srgb, var(--signal) 12%, transparent), transparent 100%),
@@ -159,10 +165,24 @@ body {
   pointer-events: none;
 }
 
+/* Static system-architecture field used by the redesigned hero. */
+.system-network {
+  opacity: 0.9;
+  mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 50%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 50%, #000 50%, transparent 100%);
+}
+
+.system-network__edges,
+.system-network__nodes,
+.system-network__leaves {
+  vector-effect: non-scaling-stroke;
+}
+
 .tree-canopy--ambient::before {
   inset: 0;
   opacity: 0.32;
-  filter: blur(20px);
+  /* No filter: this layer spans the whole document (~5000px); blurring it
+     is one of the heaviest paint costs on the page. */
   background:
     radial-gradient(ellipse 12% 8% at 4% 8%, color-mix(in srgb, var(--signal) 14%, transparent), transparent 100%),
     radial-gradient(ellipse 13% 9% at 96% 16%, color-mix(in srgb, var(--signal) 13%, transparent), transparent 100%),
@@ -172,19 +192,6 @@ body {
     radial-gradient(ellipse 13% 10% at 96% 74%, color-mix(in srgb, var(--signal) 13%, transparent), transparent 100%),
     radial-gradient(ellipse 15% 9% at 13% 88%, color-mix(in srgb, var(--signal) 11%, transparent), transparent 100%),
     radial-gradient(ellipse 15% 8% at 88% 94%, color-mix(in srgb, var(--signal) 12%, transparent), transparent 100%);
-}
-
-.tree-canopy--sides::before {
-  inset: 0;
-  opacity: 0.28;
-  filter: blur(16px);
-  background:
-    radial-gradient(ellipse 7% 15% at 3% 12%, color-mix(in srgb, var(--signal) 11%, transparent), transparent 100%),
-    radial-gradient(ellipse 7% 16% at 97% 21%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 100%),
-    radial-gradient(ellipse 6% 15% at 2% 39%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 100%),
-    radial-gradient(ellipse 6% 16% at 98% 55%, color-mix(in srgb, var(--signal) 11%, transparent), transparent 100%),
-    radial-gradient(ellipse 7% 17% at 3% 76%, color-mix(in srgb, var(--signal) 10%, transparent), transparent 100%),
-    radial-gradient(ellipse 6% 14% at 97% 89%, color-mix(in srgb, var(--signal) 11%, transparent), transparent 100%);
 }
 
 .tree-canopy--ambient .tree-canopy__leaf {
@@ -305,6 +312,46 @@ body {
 
 .scroll-target {
   scroll-margin-top: 6rem;
+}
+
+/* Modular Botanical Brutalism */
+.modular-skills,
+.hero-visual,
+.project-card-modular {
+  border-color: var(--foreground);
+}
+
+.hero-visual {
+  min-height: 520px;
+}
+
+.hero-visual__backdrop {
+  background: #dce2cd;
+}
+
+.hero-visual__photo {
+  box-shadow: 12px 12px 0 var(--foreground);
+}
+
+.hero-visual__photo img {
+  filter: saturate(0.82) contrast(1.04);
+}
+
+.hero-visual__network {
+  pointer-events: none;
+  opacity: 0.38;
+  mix-blend-mode: multiply;
+}
+
+.hero-visual__network .system-network {
+  min-height: 100%;
+}
+
+@media (max-width: 1023px) {
+  .hero-visual {
+    display: block;
+    min-height: 420px;
+  }
 }
 
 ::selection {

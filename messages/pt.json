@@ -22,12 +22,14 @@
   },
   "Home": {
     "kicker": "engenharia de software",
-    "ctaProjects": "Ver projetos",
+    "ctaProjects": "Veja meu trabalho!",
     "ctaAbout": "Sobre mim",
     "techTitle": "Tecnologias principais",
     "projectsLabel": "Arquivo · projetos selecionados",
     "featuredTitle": "Projetos destacados",
     "featuredAll": "Todos os projetos",
+    "carouselPrevious": "Projeto anterior",
+    "carouselNext": "Próximo projeto",
     "openCaseStudy": "Ler estudo de caso",
     "timelineLabel": "Registro de campo",
     "timelineTitle": "Trajetória profissional",
@@ -40,6 +42,7 @@
     "stackTitle": "Ferramentas que uso",
     "interestsTitle": "O que me move",
     "contactLabel": "Ponto de encontro",
+    "contactHeading": "Entre em contato!",
     "contactTitle": "Vamos conversar",
     "contactIntro": "Tem um problema interessante, uma equipe construindo algo ou só quer trocar ideia? Minha caixa de entrada está aberta.",
     "resumeLink": "Baixar currículo"

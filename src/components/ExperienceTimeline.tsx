@@ -7,10 +7,12 @@ export function ExperienceTimeline({
   items,
   locale,
   resultsLabel,
+  compact = false,
 }: {
   items: Experience[];
   locale: string;
   resultsLabel: string;
+  compact?: boolean;
 }) {
   const chronologicalItems = [...items].sort((a, b) =>
     b.startDate.localeCompare(a.startDate),
@@ -39,7 +41,7 @@ export function ExperienceTimeline({
               </p>
               <ul className="mt-2 max-w-3xl space-y-2 text-sm leading-relaxed text-muted">
                 {localize(job.results, locale)
-                  .slice(0, index === 0 ? 3 : 2)
+                  .slice(0, compact ? 1 : index === 0 ? 3 : 2)
                   .map((result) => (
                     <li key={result} className="flex gap-3">
                       <span aria-hidden="true" className="text-signal">↳</span>

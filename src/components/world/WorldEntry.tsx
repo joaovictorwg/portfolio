@@ -56,7 +56,7 @@ export function WorldEntry() {
 
   if (mode === "map") {
     return (
-      <div className="mx-auto max-w-4xl px-4 py-12 md:px-6">
+      <div className="w-full px-4 py-12 md:px-6">
         <button
           type="button"
           className="text-sm text-muted hover:text-foreground"
@@ -72,7 +72,7 @@ export function WorldEntry() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 md:px-6 md:py-24">
+    <div className="w-full px-4 py-16 md:px-6 md:py-24">
       <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
         {t("kicker")}
       </p>

@@ -1,4 +1,8 @@
 import type { Project } from "../types";
+import inboxImg from "../../../imgs/dyto/inbox.png";
+import campaingImg from "../../../imgs/dyto/campaing.png";
+import automationAiImg from "../../../imgs/dyto/automation_ai.png";
+import dytoLoginImg from "../../../imgs/dyto/login.png";
 
 export const dyto: Project = {
   id: "dyto",
@@ -44,7 +48,36 @@ export const dyto: Project = {
       "React Query in the operational dashboard, aligned with the backend use cases instead of inventing a second state on the client.",
     ],
   },
-  images: [],
+  images: [
+    {
+      src: inboxImg.src,
+      alt: {
+        pt: "Caixa de entrada do Dyto com conversas de atendimento",
+        en: "Dyto inbox with customer service conversations",
+      },
+    },
+    {
+      src: campaingImg.src,
+      alt: {
+        pt: "Campanhas de mensagens no painel do Dyto",
+        en: "Message campaigns in the Dyto dashboard",
+      },
+    },
+    {
+      src: automationAiImg.src,
+      alt: {
+        pt: "Automação com IA no Dyto",
+        en: "AI-powered automation in Dyto",
+      },
+    },
+    {
+      src: dytoLoginImg.src,
+      alt: {
+        pt: "Tela de login do Dyto",
+        en: "Dyto login screen",
+      },
+    },
+  ],
   links: {
     demo: null,
     github: null,

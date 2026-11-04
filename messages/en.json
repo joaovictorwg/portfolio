@@ -28,6 +28,8 @@
     "projectsLabel": "Archive · selected projects",
     "featuredTitle": "Featured projects",
     "featuredAll": "All projects",
+    "carouselPrevious": "Previous project",
+    "carouselNext": "Next project",
     "openCaseStudy": "Read case study",
     "timelineLabel": "Field log",
     "timelineTitle": "Professional timeline",
@@ -40,6 +42,7 @@
     "stackTitle": "Tools I use",
     "interestsTitle": "What drives me",
     "contactLabel": "Meeting point",
+    "contactHeading": "Get in touch!",
     "contactTitle": "Let's talk",
     "contactIntro": "Have an interesting problem, a team building something, or just want to talk shop? My inbox is open.",
     "resumeLink": "Download résumé"

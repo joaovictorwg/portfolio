@@ -46,7 +46,7 @@ type TreeCanopyProps = {
   count?: number;
   seed?: number;
   className?: string;
-  mode?: "crown" | "ambient";
+  mode?: "crown" | "ambient" | "top";
   interactive?: boolean;
 };
 
@@ -85,6 +85,21 @@ const SIDE_CLUSTERS: Cluster[] = [
   { x: 0.965, y: 0.69, rx: 0.06, ry: 0.14, weight: 1.05 },
   { x: 0.025, y: 0.86, rx: 0.055, ry: 0.12, weight: 0.85 },
   { x: 0.975, y: 0.94, rx: 0.055, ry: 0.11, weight: 0.9 },
+];
+
+// A light scatter across the hero top, kept at the left and right edges so
+// the headline and text stay clear — spread wide, with a clear centre.
+const TOP_CLUSTERS: Cluster[] = [
+  { x: 0.025, y: 0.12, rx: 0.07, ry: 0.16, weight: 0.95 },
+  { x: 0.1, y: 0.28, rx: 0.075, ry: 0.16, weight: 0.85 },
+  { x: 0.04, y: 0.48, rx: 0.07, ry: 0.15, weight: 0.8 },
+  { x: 0.115, y: 0.64, rx: 0.07, ry: 0.14, weight: 0.7 },
+  { x: 0.06, y: 0.82, rx: 0.07, ry: 0.13, weight: 0.6 },
+  { x: 0.975, y: 0.16, rx: 0.07, ry: 0.16, weight: 1.0 },
+  { x: 0.9, y: 0.32, rx: 0.075, ry: 0.16, weight: 0.9 },
+  { x: 0.96, y: 0.54, rx: 0.065, ry: 0.15, weight: 0.85 },
+  { x: 0.885, y: 0.7, rx: 0.07, ry: 0.14, weight: 0.75 },
+  { x: 0.94, y: 0.86, rx: 0.065, ry: 0.12, weight: 0.6 },
 ];
 
 const CROWN_LAYER_PROFILES: LayerProfile[] = [
@@ -165,6 +180,33 @@ const SIDE_LAYER_PROFILES: LayerProfile[] = [
     sizeScale: 0.8,
     opacityScale: 0.62,
     clusterDrift: 0.028,
+  },
+];
+
+const TOP_LAYER_PROFILES: LayerProfile[] = [
+  {
+    id: "back",
+    share: 0.33,
+    seedOffset: 151,
+    sizeScale: 1.1,
+    opacityScale: 0.36,
+    clusterDrift: 0.014,
+  },
+  {
+    id: "middle",
+    share: 0.36,
+    seedOffset: 433,
+    sizeScale: 0.94,
+    opacityScale: 0.5,
+    clusterDrift: 0.024,
+  },
+  {
+    id: "front",
+    share: 0.31,
+    seedOffset: 877,
+    sizeScale: 0.78,
+    opacityScale: 0.62,
+    clusterDrift: 0.032,
   },
 ];
 
@@ -286,20 +328,24 @@ function generateLeaves(
 function generateLayers(
   count: number,
   seed: number,
-  mode: "crown" | "ambient",
+  mode: "crown" | "ambient" | "top",
 ): CanopyLayer[] {
   const profiles =
     mode === "crown"
       ? CROWN_LAYER_PROFILES
       : mode === "ambient"
         ? SIDE_LAYER_PROFILES
-        : AMBIENT_LAYER_PROFILES;
+        : mode === "top"
+          ? TOP_LAYER_PROFILES
+          : AMBIENT_LAYER_PROFILES;
   const clusters =
     mode === "crown"
       ? CLUSTERS
       : mode === "ambient"
         ? SIDE_CLUSTERS
-        : AMBIENT_CLUSTERS;
+        : mode === "top"
+          ? TOP_CLUSTERS
+          : AMBIENT_CLUSTERS;
   let assigned = 0;
 
   return profiles.map((profile, index) => {
@@ -338,8 +384,15 @@ export function TreeCanopy({
     getServerMountSnapshot,
   );
   const leafCount =
-    count ?? (mode === "crown" ? 600 : mode === "ambient" ? 300 : 60);
-  const isInteractive = interactive ?? mode !== "ambient";
+    count ??
+    (mode === "crown"
+      ? 600
+      : mode === "top"
+        ? 40
+        : mode === "ambient"
+          ? 60
+          : 300);
+  const isInteractive = interactive ?? (mode !== "ambient" && mode !== "top");
   const layers = useMemo(
     () => generateLayers(leafCount, seed, mode),
     [leafCount, seed, mode],
@@ -413,7 +466,7 @@ export function TreeCanopy({
   return (
     <div
       ref={canopyRef}
-      className={`tree-canopy ${mode === "ambient" ? "tree-canopy--ambient" : ""} ${mode === "ambient" ? "tree-canopy--sides" : ""} ${className}`.trim()}
+      className={`tree-canopy ${mode === "ambient" || mode === "top" ? "tree-canopy--ambient" : ""} ${className}`.trim()}
       onPointerMove={isInteractive ? handlePointerMove : undefined}
       onPointerLeave={isInteractive ? resetWind : undefined}
       aria-hidden="true"
@@ -455,7 +508,7 @@ export function TreeCanopy({
                         d="M 4 24 C 4 14, 10 5, 23 3 C 25 14, 19 23, 4 24 Z"
                         fill="var(--leaf-color)"
                       />
-                      {mode !== "ambient" ? (
+                      {mode === "crown" ? (
                         <path
                           d="M 5 23 C 11 16, 16 10, 22 4 M 12 15 L 11 8 M 16 11 L 22 12"
                           stroke="var(--background)"
