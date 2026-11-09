@@ -1,9 +1,13 @@
 import type { Project } from "../types";
+import chatImg from "../../../imgs/chatbot_rag/print_1.png";
+import repositoryImg from "../../../imgs/chatbot_rag/print_2.png";
+import automationsImg from "../../../imgs/chatbot_rag/print_3.png";
+import emptyChatImg from "../../../imgs/chatbot_rag/print_4.png";
 
 export const chatbotRag: Project = {
   id: "chatbot-rag",
   slug: "chatbot-rag",
-  featured: true,
+  featured: false,
   title: {
     pt: "Chatbot RAG com Banco Vetorial",
     en: "RAG Chatbot with Vector Database",
@@ -23,9 +27,9 @@ export const chatbotRag: Project = {
   technologies: [
     "Python",
     "LangChain",
-    "Django REST Framework",
     "pgvector",
     "FAISS",
+    "Django REST Framework",
     "Celery",
     "Redis",
     "WebSockets",
@@ -47,10 +51,39 @@ export const chatbotRag: Project = {
       "Django Channels and WebSockets for real-time chat, with generation happening only after retrieval: the prompt carries retrieved chunks, not just the question.",
     ],
   },
-  images: [],
+  images: [
+    {
+      src: chatImg.src,
+      alt: {
+        pt: "Conversa no chat do assistente respondendo sobre prazo de garantia e como abrir um chamado de suporte",
+        en: "Chat conversation with the assistant answering about the warranty period and how to open a support ticket",
+      },
+    },
+    {
+      src: repositoryImg.src,
+      alt: {
+        pt: "Aba de repositório com os documentos indexados na base de conhecimento e status concluído",
+        en: "Repository tab listing the documents indexed into the knowledge base with a completed status",
+      },
+    },
+    {
+      src: automationsImg.src,
+      alt: {
+        pt: "Painel de automações com agentes disponíveis e histórico de execuções",
+        en: "Automations panel with available agents and the run history",
+      },
+    },
+    {
+      src: emptyChatImg.src,
+      alt: {
+        pt: "Tela inicial do chat antes da primeira mensagem",
+        en: "Chat start screen before the first message",
+      },
+    },
+  ],
   links: {
     demo: null,
-    github: null,
+    github: "https://github.com/joaovictorwg/chatbot-rag-vector",
     monograph: null,
   },
   world: {

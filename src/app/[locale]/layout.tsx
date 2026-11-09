@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { profile } from "@/content/profile";
 import { SiteShell } from "@/components/layout/SiteShell";
+import { ScrollToHash } from "@/components/layout/ScrollToHash";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import "../globals.css";
 
@@ -77,6 +78,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="min-h-full bg-background text-foreground">
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider>
+            <ScrollToHash />
             <SiteShell>{children}</SiteShell>
           </ThemeProvider>
         </NextIntlClientProvider>

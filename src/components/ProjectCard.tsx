@@ -3,6 +3,7 @@ import { localize } from "@/lib/localize";
 import type { Project } from "@/content/types";
 import { Link } from "@/i18n/navigation";
 import { InteractiveTilt } from "./ui/InteractiveTilt";
+import { ProjectCover } from "./ProjectCover";
 import { Tag } from "./ui/Tag";
 
 export function ProjectCard({
@@ -18,12 +19,12 @@ export function ProjectCard({
 
   return (
     <InteractiveTilt className="project-card-modular group flex h-[540px] flex-col gap-3 overflow-hidden border-2 bg-background p-5 shadow-[6px_6px_0_var(--foreground)] transition duration-300 hover:translate-x-1 hover:translate-y-1 hover:bg-sage hover:shadow-none sm:h-[560px]">
-      {cover ? (
-        <Link
-          href={`/projects/${project.slug}`}
-          className="relative -mx-5 -mt-5 mb-1 block aspect-[16/9] overflow-hidden border-b-2 border-ink bg-background"
-          aria-label={localize(project.title, locale)}
-        >
+      <Link
+        href={`/projects/${project.slug}`}
+        className="relative -mx-5 -mt-5 mb-1 block aspect-[16/9] shrink-0 overflow-hidden border-b-2 border-ink bg-background"
+        aria-label={localize(project.title, locale)}
+      >
+        {cover ? (
           <Image
             src={cover.src}
             alt={localize(cover.alt, locale)}
@@ -31,10 +32,12 @@ export function ProjectCard({
             sizes="(max-width: 768px) 100vw, 50vw"
             className="object-cover transition duration-500 group-hover:scale-[1.03]"
           />
-        </Link>
-      ) : null}
+        ) : (
+          <ProjectCover className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]" />
+        )}
+      </Link>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-        <h3 className="font-display text-2xl font-semibold tracking-tight">
+        <h3 className="line-clamp-2 font-display text-2xl font-semibold tracking-tight">
           <Link href={`/projects/${project.slug}`} className="hover:text-accent">
             {localize(project.title, locale)}
           </Link>
@@ -45,12 +48,20 @@ export function ProjectCard({
           </span>
         ) : null}
       </div>
-      <p className="text-sm leading-relaxed text-muted">
+      <p className="line-clamp-3 text-sm leading-relaxed text-muted">
         {localize(project.summary, locale)}
       </p>
-      <div className="mt-auto flex flex-wrap gap-1.5 pt-2">
-        {project.technologies.slice(0, 5).map((tech) => (
-          <Tag key={tech}>{tech}</Tag>
+      {/* Uma única linha de tags: as mais relevantes vêm primeiro na lista. */}
+      <div className="mt-auto flex flex-nowrap items-center gap-1.5 overflow-hidden pt-2">
+        {project.technologies.slice(0, 4).map((tech, index) => (
+          <span
+            key={tech}
+            className={
+              index === 3 ? "hidden shrink-0 lg:inline-block" : "inline-block shrink-0"
+            }
+          >
+            <Tag>{tech}</Tag>
+          </span>
         ))}
       </div>
       <Link

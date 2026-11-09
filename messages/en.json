@@ -40,18 +40,17 @@
     "aboutTitle": "About me",
     "educationTitle": "Education",
     "stackTitle": "Tools I use",
-    "interestsTitle": "What drives me",
-    "contactLabel": "Meeting point",
+    "interestsTitle": "What I like to build",
     "contactHeading": "Get in touch!",
     "contactTitle": "Let's talk",
-    "contactIntro": "Have an interesting problem, a team building something, or just want to talk shop? My inbox is open.",
+    "contactIntro": "Have an interesting problem, a team building something, or just want to talk shop? Get in touch through any of the channels below.",
     "resumeLink": "Download résumé"
   },
   "About": {
     "title": "About",
     "intro": "Professional profile",
     "education": "Education",
-    "interests": "Interests",
+    "interests": "What I like to build",
     "stack": "Technologies"
   },
   "Experience": {
@@ -116,6 +115,6 @@
     "comingSoon": "Full simulation comes later. For now, the core of the concept:"
   },
   "Footer": {
-    "rights": "Made in Palmas, with code and curiosity."
+    "rights": "© 2026 João Victor Walcacer Giani · All rights reserved"
   }
 }

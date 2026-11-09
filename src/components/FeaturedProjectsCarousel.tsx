@@ -59,7 +59,7 @@ export function FeaturedProjectsCarousel({
           <button
             type="button"
             aria-label={previousLabel}
-            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-terracotta text-lg font-bold text-ink shadow-[3px_3px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-accent text-lg font-bold text-accent-fg shadow-[3px_3px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
             onClick={() => move(-1)}
           >
             ←
@@ -67,7 +67,7 @@ export function FeaturedProjectsCarousel({
           <button
             type="button"
             aria-label={nextLabel}
-            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-terracotta text-lg font-bold text-ink shadow-[3px_3px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
+            className="inline-flex h-10 w-10 items-center justify-center border-2 border-ink bg-accent text-lg font-bold text-accent-fg shadow-[3px_3px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
             onClick={() => move(1)}
           >
             →

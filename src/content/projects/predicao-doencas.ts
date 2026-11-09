@@ -80,7 +80,7 @@ export const predicaoDoencas: Project = {
   ],
   links: {
     demo: null,
-    github: null,
+    github: "https://github.com/joaovictorwg/pns-dss-ncd-ml",
     monograph: null,
   },
   world: {

@@ -7,6 +7,8 @@ import { experience } from "@/content/experience";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { FeaturedProjectsCarousel } from "@/components/FeaturedProjectsCarousel";
 import { HomeRightColumn } from "@/components/HomeRightColumn";
+import { StackVine } from "@/components/StackVine";
+import { ContactChannels } from "@/components/ContactChannels";
 import { Tag } from "@/components/ui/Tag";
 import { PageTree } from "@/components/ui/PageTree";
 import { SystemNetwork } from "@/components/ui/SystemNetwork";
@@ -144,18 +146,14 @@ export default async function HomePage({ params }: Props) {
 
       <PageTree />
 
-      <section className="modular-skills grid border-2 border-ink bg-sage md:grid-cols-[10rem_1fr]">
-        <div className="flex items-center border-b-2 border-ink bg-olive px-5 py-5 font-display text-2xl font-bold uppercase md:border-b-0 md:border-r-2">
-          Stack
-        </div>
-        <div className="grid grid-cols-2 divide-x-2 divide-y-2 divide-ink sm:grid-cols-4 md:grid-cols-7 md:divide-y-0">
-          {profile.technologies.slice(0, 7).map((technology) => (
-            <div key={technology} className="flex min-h-20 items-center justify-center px-3 py-4 text-center font-mono text-xs font-medium uppercase">
-              {technology}
-            </div>
-          ))}
-        </div>
-      </section>
+      <div className="-mt-24 -mb-12">
+        <StackVine
+          primary={profile.technologies.slice(0, 7)}
+          secondary={profile.skillGroups.flatMap((group) => group.items).filter(
+            (technology) => !profile.technologies.slice(0, 7).includes(technology),
+          )}
+        />
+      </div>
 
       <div className="grid gap-10 lg:grid-cols-[42%_50%] lg:items-start lg:justify-between lg:gap-0">
       <section id="projects" className="scroll-target min-w-0 lg:hidden">
@@ -275,40 +273,36 @@ export default async function HomePage({ params }: Props) {
       <Reveal>
         <section
           id="contact"
-          className="scroll-target border-2 border-ink bg-accent px-6 py-8 text-accent-fg md:px-10 md:py-12"
+          className="scroll-target border-2 border-ink bg-accent px-6 py-10 text-white shadow-[6px_6px_0_var(--foreground)] dark:bg-surface md:px-10 md:py-14"
         >
-          <p className="font-mono text-[10px] tracking-[0.2em] text-signal uppercase">
-            {t("contactLabel")}
-          </p>
-          <div className="mt-3 flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div className="max-w-2xl">
+          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+            <div className="min-w-0 max-w-2xl">
               <h2 className="font-display text-4xl font-semibold tracking-tight md:text-5xl">
                 {t("contactTitle")}
               </h2>
-              <p className="mt-3 text-muted">{t("contactIntro")}</p>
-              <a
-                href={profile.links.email}
-                className="mt-5 inline-block text-lg text-sage transition-colors hover:text-background"
-              >
-                {profile.links.email.replace(/^mailto:/, "")} ↗
-              </a>
+              <p className="mt-4 leading-relaxed text-white/85">{t("contactIntro")}</p>
+              <div className="mt-8">
+                <ContactChannels email={profile.links.email} linkedin={profile.links.linkedin} />
+              </div>
             </div>
             {resume ? (
-              <Magnetic className="shrink-0">
-                <a
-                  href={resume}
-                  download
-                  className="group inline-flex items-center justify-center gap-2 border-2 border-ink bg-sage px-5 py-3 text-sm text-ink shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
-                >
-                  {t("resumeLink")}{" "}
-                  <span
-                    aria-hidden
-                    className="inline-block transition-transform duration-300 group-hover:translate-y-0.5"
+              <div className="shrink-0">
+                <Magnetic>
+                  <a
+                    href={resume}
+                    download
+                    className="group inline-flex items-center justify-center gap-2 border-2 border-ink bg-sage px-5 py-3 text-sm text-ink shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
                   >
-                    ↓
-                  </span>
-                </a>
-              </Magnetic>
+                    {t("resumeLink")}{" "}
+                    <span
+                      aria-hidden
+                      className="inline-block transition-transform duration-300 group-hover:translate-y-0.5"
+                    >
+                      ↓
+                    </span>
+                  </a>
+                </Magnetic>
+              </div>
             ) : null}
           </div>
         </section>

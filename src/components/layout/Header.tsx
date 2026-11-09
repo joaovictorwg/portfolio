@@ -6,19 +6,29 @@ import { motion, useScroll, useSpring } from "motion/react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { ThemeToggle } from "./ThemeToggle";
 
-const links = [
-  { id: "top", key: "home" as const },
-  { id: "projects", key: "projects" as const },
-  { id: "experience", key: "experience" as const },
-  { id: "about", key: "about" as const },
-  { id: "contact", key: "contact" as const },
+type NavKey = "home" | "projects" | "experience" | "about" | "contact";
+
+type NavLink = {
+  id: string;
+  key: NavKey;
+  /** Rota própria (página inteira); sem `path`, o link é âncora da home. */
+  path?: string;
+};
+
+const links: NavLink[] = [
+  { id: "top", key: "home" },
+  { id: "projects", key: "projects", path: "/projects" },
+  { id: "experience", key: "experience" },
+  { id: "about", key: "about", path: "/about" },
+  { id: "contact", key: "contact" },
 ];
 
 export function Header({ name }: { name: string }) {
   const t = useTranslations("Nav");
   const locale = useLocale();
   const [open, setOpen] = useState(false);
-  const homeHref = (section: string) => `/${locale}/#${section}`;
+  const hrefFor = (link: NavLink) =>
+    link.path ? `/${locale}${link.path}` : `/${locale}/#${link.id}`;
   const { scrollYProgress } = useScroll();
   const progress = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -34,7 +44,7 @@ export function Header({ name }: { name: string }) {
         className="absolute inset-x-0 top-0 h-0.5 origin-left bg-accent"
       />
       <div className="mx-auto flex w-full max-w-[1360px] items-center justify-between gap-4 px-8 py-3 md:px-12 lg:px-16 xl:px-20">
-        <a href={homeHref("top")} className="font-display text-xl font-semibold tracking-tight transition-colors hover:text-signal">
+        <a href={`/${locale}/#top`} className="font-display text-xl font-semibold tracking-tight transition-colors hover:text-signal">
           {name}
         </a>
         <nav
@@ -44,7 +54,7 @@ export function Header({ name }: { name: string }) {
           {links.map((link) => (
             <a
               key={link.id}
-              href={homeHref(link.id)}
+              href={hrefFor(link)}
               className="transition-colors hover:text-signal"
             >
               {t(link.key)}
@@ -76,7 +86,7 @@ export function Header({ name }: { name: string }) {
           {links.map((link) => (
             <a
               key={link.id}
-              href={homeHref(link.id)}
+              href={hrefFor(link)}
               className="py-1 text-sm"
               onClick={() => setOpen(false)}
             >

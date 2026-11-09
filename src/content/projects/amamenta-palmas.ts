@@ -104,8 +104,8 @@ export const amamentaPalmas: Project = {
     },
   ],
   links: {
-    demo: null,
-    github: null,
+    demo: "https://amamenta-palmas.vercel.app",
+    github: "https://github.com/joaovictorwg/amamenta-palmas",
     monograph: null,
   },
   world: {

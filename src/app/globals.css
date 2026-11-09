@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* O tema é alternado pela classe `.dark` no html, então a variante `dark:`
+   precisa apontar para ela (o padrão usa prefers-color-scheme). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Light (default): off-white base, green only in the details */
 :root {
   --background: #f3f0e5;
@@ -13,21 +17,23 @@
   --signal-fg: #f5f3ea;
   --ring: #718653;
   --wood: #b87955;
+  --sage: #dce2cd;
 }
 
 /* Dark: neutral charcoal base, green only in the details */
 .dark {
   --background: #172016;
   --foreground: #eceadd;
-  --muted: #9b9d8f;
+  --muted: #b8bdac;
   --surface: #263f24;
-  --border: #a1ad86;
-  --accent: #718653;
-  --accent-fg: #0f1109;
-  --signal: #a1ad86;
+  --border: #6f805c;
+  --accent: #91ad5f;
+  --accent-fg: #10150e;
+  --signal: #b3c982;
   --signal-fg: #131412;
   --ring: #95ad5e;
   --wood: #a3855c;
+  --sage: #2f4a2c;
 }
 
 @theme inline {
@@ -43,7 +49,7 @@
   --color-ring: var(--ring);
   --color-wood: var(--wood);
   --color-ink: var(--foreground);
-  --color-sage: #dce2cd;
+  --color-sage: var(--sage);
   --color-olive: #718653;
   --color-terracotta: #b87955;
   --font-sans: var(--font-dm-sans);
@@ -178,6 +184,185 @@ body::before {
   vector-effect: non-scaling-stroke;
 }
 
+.skills-band {
+  position: relative;
+  overflow: hidden;
+  color: var(--foreground);
+}
+
+.skills-band__label {
+  display: flex;
+  min-width: 5rem;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.65rem 0.5rem;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: filter 180ms ease;
+}
+
+.skills-band__label:hover {
+  filter: brightness(1.18);
+}
+
+.skills-band__label:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -4px;
+}
+
+.skills-band__row {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  background: var(--background);
+}
+
+.skills-band__row::-webkit-scrollbar {
+  display: none;
+}
+
+.skills-band__item {
+  display: flex;
+  min-width: 6rem;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  border-right: 1px solid color-mix(in srgb, var(--foreground) 14%, transparent);
+  padding: 0.65rem 0.5rem;
+  color: var(--foreground);
+  transition: background 180ms ease;
+}
+
+.skills-band__item:last-child {
+  border-right: 0;
+}
+
+.skills-band__item:hover {
+  background: color-mix(in srgb, var(--sage) 55%, transparent);
+}
+
+.skills-band__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.skills-band__item-label {
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.skills-marquee {
+  position: relative;
+  display: grid;
+  overflow: hidden;
+  border-top: 2px solid var(--foreground);
+  padding: 0.5rem 0;
+  background: var(--sage);
+}
+
+.skills-marquee::before,
+.skills-marquee::after {
+  pointer-events: none;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  bottom: 0;
+  width: 4rem;
+  content: "";
+}
+
+.skills-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--sage), transparent);
+}
+
+.skills-marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--sage), transparent);
+}
+
+.skills-marquee__viewport {
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.skills-marquee__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.skills-marquee__track {
+  display: flex;
+  width: max-content;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1.25rem;
+  animation: skills-marquee 40s linear infinite;
+}
+
+.skills-marquee__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--muted);
+  font-family: var(--font-ibm-plex-mono), monospace;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+.skills-marquee__item:hover {
+  color: var(--foreground);
+}
+
+.skills-marquee__mark {
+  color: var(--signal);
+  font-size: 0.55rem;
+}
+
+.skills-marquee--static .skills-marquee__viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+.skills-marquee--static .skills-marquee__track {
+  animation: none;
+}
+
+@keyframes skills-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-marquee__viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+  }
+
+  .skills-marquee__track {
+    animation: none;
+  }
+}
+
 .tree-canopy--ambient::before {
   inset: 0;
   opacity: 0.32;
@@ -240,6 +425,15 @@ body::before {
 .tree-canopy__leaf:hover .tree-canopy__shape {
   filter: brightness(1.2);
   transform: scale(1.12);
+}
+
+/* Keep the dark theme readable when modular cards and tags change surface. */
+.dark .project-card-modular:hover {
+  border-color: var(--signal);
+}
+
+.dark .project-card-modular:hover .text-muted {
+  color: var(--muted);
 }
 
 @keyframes canopy-leaf-sway {

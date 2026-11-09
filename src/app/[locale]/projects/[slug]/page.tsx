@@ -4,6 +4,7 @@ import { buildAlternates } from "@/i18n/metadata";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/content/projects";
 import { Tag } from "@/components/ui/Tag";
+import { ProjectCover } from "@/components/ProjectCover";
 import { Reveal } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -121,7 +122,15 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
           </section>
         </Reveal>
-      ) : null}
+      ) : (
+        <Reveal>
+          <figure className="mt-12 overflow-hidden rounded-xl border border-border bg-surface">
+            <div className="relative aspect-[16/10]">
+              <ProjectCover className="absolute inset-0" />
+            </div>
+          </figure>
+        </Reveal>
+      )}
 
       <Reveal>
         <section className="mt-10">

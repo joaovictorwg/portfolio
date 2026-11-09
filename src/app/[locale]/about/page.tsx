@@ -67,7 +67,7 @@ export default async function AboutPage({ params }: Props) {
       </Reveal>
 
       <Reveal className="mt-14" delay={0.12}>
-        <section>
+        <section id="technologies" className="scroll-target">
           <h2 className="font-display text-3xl font-semibold tracking-tight">
             {t("stack")}
           </h2>
