@@ -18,7 +18,7 @@ export function ProjectCard({
   const cover = project.images[0];
 
   return (
-    <InteractiveTilt className="project-card-modular group flex h-[540px] flex-col gap-3 overflow-hidden border-2 bg-background p-5 shadow-[6px_6px_0_var(--foreground)] transition duration-300 hover:translate-x-1 hover:translate-y-1 hover:bg-sage hover:shadow-none sm:h-[560px]">
+    <InteractiveTilt className="project-card-modular group flex h-[568px] flex-col gap-3 overflow-hidden border-2 bg-background p-5 shadow-[6px_6px_0_var(--foreground)] transition duration-300 hover:translate-x-1 hover:translate-y-1 hover:bg-sage hover:shadow-none">
       <Link
         href={`/projects/${project.slug}`}
         className="relative -mx-5 -mt-5 mb-1 block aspect-[16/9] shrink-0 overflow-hidden border-b-2 border-ink bg-background"
@@ -52,7 +52,7 @@ export function ProjectCard({
         {localize(project.summary, locale)}
       </p>
       {/* Uma única linha de tags: as mais relevantes vêm primeiro na lista. */}
-      <div className="mt-auto flex flex-nowrap items-center gap-1.5 overflow-hidden pt-2">
+      <div className="mt-auto flex shrink-0 flex-wrap items-center gap-1.5 pt-2">
         {project.technologies.slice(0, 4).map((tech, index) => (
           <span
             key={tech}

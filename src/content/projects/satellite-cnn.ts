@@ -10,8 +10,8 @@ export const satelliteCnn: Project = {
     en: "Satellite image classification with CNN",
   },
   summary: {
-    pt: "Rede neural convolucional em Keras para classificar imagens de satélite do EuroSAT em 10 classes de uso do solo, do carregamento ao treino num notebook único.",
-    en: "A convolutional network in Keras that classifies EuroSAT satellite images into 10 land-use classes, from loading to training in a single notebook.",
+    pt: "Rede neural convolucional em Keras que classifica imagens de satélite EuroSAT em 10 classes de uso do solo.",
+    en: "Convolutional network in Keras classifying EuroSAT satellite images into 10 land-use classes.",
   },
   problem: {
     pt: "Imagens de satélite chegam como pixels, não como rótulo: identificar uso do solo em milhares de cenas manualmente não escala, e a informação relevante está na disposição espacial das cores — não num valor isolado de pixel.",

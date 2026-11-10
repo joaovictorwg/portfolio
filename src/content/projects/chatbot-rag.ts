@@ -13,8 +13,8 @@ export const chatbotRag: Project = {
     en: "RAG Chatbot with Vector Database",
   },
   summary: {
-    pt: "POC de Retrieval-Augmented Generation para responder a partir de documentos próprios: upload, chunking, embeddings, busca vetorial e geração fundamentada.",
-    en: "A Retrieval-Augmented Generation POC that answers from your own documents: upload, chunking, embeddings, vector search, and grounded generation.",
+    pt: "POC de RAG para responder a partir de documentos próprios: upload, chunking, embeddings e busca vetorial.",
+    en: "RAG POC that answers from your own documents: upload, chunking, embeddings, and vector search.",
   },
   problem: {
     pt: "LLMs sozinhos alucinam e não conhecem documentos internos. Era preciso responder com evidência recuperada, em tempo quase real, sem reindexar o mundo a cada pergunta — e sem travar o event loop enquanto o documento é processado.",

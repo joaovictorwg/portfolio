@@ -13,8 +13,8 @@ export const dyto: Project = {
     en: "Dyto",
   },
   summary: {
-    pt: "Plataforma multi-tenant de atendimento no WhatsApp que estou construindo com dois sócios: onboarding de números, webhooks e entrega confiável de mensagens.",
-    en: "Multi-tenant WhatsApp customer service platform I am building with two partners: number onboarding, webhooks, and reliable message delivery.",
+    pt: "Plataforma multi-tenant de atendimento no WhatsApp que construo com dois sócios: webhooks e entrega confiável.",
+    en: "Multi-tenant WhatsApp support platform I'm building with two partners: onboarding, webhooks, reliable delivery.",
   },
   problem: {
     pt: "Cada cliente precisa de um número, de um consentimento OAuth e de isolamento real de dados — sem perder mensagens quando a Cloud API ou o próprio sistema falha no meio do caminho. É o tipo de problema em que o caso excepcional vira regra se ninguém o tratar como caso de domínio.",

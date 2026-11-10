@@ -13,8 +13,8 @@ export const predicaoDoencas: Project = {
     en: "Chronic Disease Prediction with Social Determinants of Health",
   },
   summary: {
-    pt: "Trabalho de conclusão de curso: arquitetura preditiva que mede quanto os determinantes sociais da saúde mudam a predição de hipertensão — e a que custo de equidade.",
-    en: "Bachelor's thesis: a predictive architecture that measures how much social determinants of health change hypertension prediction — and at what cost to fairness.",
+    pt: "TCC: arquitetura preditiva que mede como os determinantes sociais da saúde mudam a predição de hipertensão.",
+    en: "Bachelor's thesis: a predictive architecture on how social determinants of health change hypertension prediction.",
   },
   problem: {
     pt: "Modelos clínicos ignoram escolaridade, renda e condições de vida. Isso pode melhorar a acurácia, mas também pode esconder viés: um modelo que acerta mais no agregado pode falhar de forma sistemática nos grupos mais vulneráveis.",

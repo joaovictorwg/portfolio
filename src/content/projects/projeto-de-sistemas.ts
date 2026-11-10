@@ -14,8 +14,8 @@ export const projetoDeSistemas: Project = {
     en: "ServiçoCerto · Software Projects Course",
   },
   summary: {
-    pt: "Plataforma de prestação de serviços construída em Flutter na disciplina de Projeto de Sistemas da UFT: app para clientes e para prestadoras, com especificação de requisitos, protótipos no Figma e Kanban no Trello. Liderança técnica do desenvolvimento.",
-    en: "A service marketplace built in Flutter for the Software Projects course at UFT: an app for clients and providers, with requirements specification, Figma prototypes, and Kanban on Trello. I led the technical development.",
+    pt: "Plataforma de serviços em Flutter feita na disciplina de Projeto de Sistemas da UFT. Liderança técnica.",
+    en: "Flutter service marketplace built for the Software Projects course at UFT. I led the technical development.",
   },
   problem: {
     pt: "Conectar quem precisa de um serviço a quem presta, com perfil, busca por localização e avaliação, sem virar uma planilha disfarçada de sistema. E o desafio duplo: entregar isso em iterações curtas com um time de disciplina, cuja coordenação também era parte do problema a resolver.",

@@ -19,8 +19,8 @@ export const amamentaPalmas: Project = {
     en: "Amamenta Palmas",
   },
   summary: {
-    pt: "MVP de um sistema de gestão para banco de leite humano hospitalar, desenvolvido em parceria com a universidade e o hospital. Atuei como Tech Lead.",
-    en: "MVP of a management system for a hospital human milk bank, built in partnership with the university and the hospital. I acted as Tech Lead.",
+    pt: "MVP de gestão para banco de leite humano hospitalar, em parceria com a universidade. Atuei como Tech Lead.",
+    en: "MVP for a hospital human milk bank, built with the university. I worked as Tech Lead.",
   },
   problem: {
     pt: "O banco de leite operava com controles fragmentados e precisava rastrear cada frasco com segurança sanitária: cadastro de doadoras, agendamento de visitas, coleta, pasteurização, estoque e distribuição. Perder histórico clínico ou logístico não era uma opção.",

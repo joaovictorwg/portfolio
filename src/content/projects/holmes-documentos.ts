@@ -14,8 +14,8 @@ export const holmesDocumentos: Project = {
     en: "Document automation in Holmes",
   },
   summary: {
-    pt: "Automação para uma concessionária: cada venda abre um processo no Holmes, o CRM de compra e venda de veículos, com uma pilha de documentos. A automação extrai as informações desses documentos e valida contra os dados do processo, como etapa intermediária entre as ações humanas para encontrar erros com mais facilidade.",
-    en: "An automation for a car dealership: every sale opens a process in Holmes, the vehicle sales CRM, filled with a stack of documents. The automation extracts the information from those documents and validates it against the process data, as an intermediate step between human actions so errors surface sooner.",
+    pt: "Automação para concessionária: cada venda abre um processo no Holmes e a automação valida os documentos.",
+    en: "Car dealership automation: each sale opens a Holmes process and the automation validates the documents.",
   },
   problem: {
     pt: "No Holmes, cada venda vira um processo com documentos anexados — pedido de venda, nota, documentos do cliente. Conferir tudo campo a campo, entre uma etapa do fluxo e outra, era trabalho humano repetitivo, e a divergência só aparecia depois de passar por várias mãos. Faltava uma checagem automática que ficasse exatamente no meio do caminho.",
