@@ -9,11 +9,11 @@ import { FeaturedProjectsCarousel } from "@/components/FeaturedProjectsCarousel"
 import { HomeRightColumn } from "@/components/HomeRightColumn";
 import { StackVine } from "@/components/StackVine";
 import { ContactChannels } from "@/components/ContactChannels";
-import { Tag } from "@/components/ui/Tag";
+import { TechGroups } from "@/components/TechGroups";
 import { PageTree } from "@/components/ui/PageTree";
-import { SystemNetwork } from "@/components/ui/SystemNetwork";
 import { Magnetic } from "@/components/ui/Magnetic";
 import { Reveal } from "@/components/ui/Reveal";
+import { DownloadButton } from "@/components/ui/DownloadButton";
 import { Link } from "@/i18n/navigation";
 import { buildAlternates } from "@/i18n/metadata";
 import { localize } from "@/lib/localize";
@@ -132,12 +132,9 @@ export default async function HomePage({ params }: Props) {
               fill
               priority
               sizes="(max-width: 1280px) 42vw, 560px"
-              className="object-cover"
+              className="object-cover object-top"
             />
           </figure>
-          <div className="hero-visual__network absolute inset-0">
-            <SystemNetwork />
-          </div>
           <span className="absolute bottom-5 left-4 border-2 border-ink bg-olive px-3 py-2 font-mono text-[10px] tracking-[0.16em] text-ink uppercase">
             Software engineer · Brazil
           </span>
@@ -184,9 +181,9 @@ export default async function HomePage({ params }: Props) {
         <Reveal delay={0.1}>
           <Link
             href="/experience"
-            className="mt-8 inline-flex font-mono text-xs text-signal transition-colors hover:text-accent"
+            className="mt-8 inline-flex items-center gap-2 border-2 border-ink bg-background px-5 py-2.5 font-mono text-sm font-semibold tracking-wide uppercase shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-sage hover:shadow-none"
           >
-            {t("fullExperience")} ↗
+            {t("fullExperience")} <span aria-hidden>↗</span>
           </Link>
         </Reveal>
       </section>
@@ -216,6 +213,11 @@ export default async function HomePage({ params }: Props) {
                   {localize(item.institution, locale)} ·{" "}
                   {localize(item.period, locale)}
                 </p>
+                {item.diploma ? (
+                  <DownloadButton href={item.diploma} className="mt-3">
+                    {t("diplomaLink")}
+                  </DownloadButton>
+                ) : null}
               </div>
             ))}
           </div>
@@ -226,11 +228,7 @@ export default async function HomePage({ params }: Props) {
             <h3 className="font-display text-2xl font-semibold">
               {t("stackTitle")}
             </h3>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {profile.technologies.map((technology) => (
-                <Tag key={technology}>{technology}</Tag>
-              ))}
-            </div>
+            <TechGroups groups={profile.skillGroups} locale={locale} className="mt-4" />
           </div>
           <div>
             <h3 className="font-display text-2xl font-semibold">
@@ -265,6 +263,7 @@ export default async function HomePage({ params }: Props) {
         aboutLabel={t("aboutLabel")}
         aboutTitle={t("aboutTitle")}
         educationTitle={t("educationTitle")}
+        diplomaLink={t("diplomaLink")}
         stackTitle={t("stackTitle")}
         interestsTitle={t("interestsTitle")}
       />

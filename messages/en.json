@@ -44,12 +44,14 @@
     "contactHeading": "Get in touch!",
     "contactTitle": "Let's talk",
     "contactIntro": "Have an interesting problem, a team building something, or just want to talk shop? Get in touch through any of the channels below.",
-    "resumeLink": "Download résumé"
+    "resumeLink": "Download résumé",
+    "diplomaLink": "Download diploma"
   },
   "About": {
     "title": "About",
     "intro": "Professional profile",
     "education": "Education",
+    "diplomaLink": "Download diploma",
     "interests": "What I like to build",
     "stack": "Technologies"
   },

@@ -46,6 +46,7 @@ export const satelliteCnn: Project = {
       },
     },
   ],
+  hideScreenshots: true,
   links: {
     demo: null,
     github: "https://github.com/joaovictorwg/DeepLearning-projects",

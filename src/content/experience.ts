@@ -21,31 +21,51 @@ export const experience: Experience[] = [
       en: "Remote, Brazil",
     },
     summary: {
-      pt: "Responsável por extrair um serviço de API dedicado e por reescrever a estratégia de dados das telas mais pesadas do produto.",
-      en: "Promoted to junior after a two-year internship. Responsible for extracting a dedicated API service and for rethinking the data strategy behind the product's heaviest screens.",
+      pt: "Atuação no desenvolvimento e manutenção de aplicações full stack para uma plataforma de gestão de eficiência energética e emissões de carbono. Desenvolvimento de novas funcionalidades, evolução de APIs e modernização da arquitetura frontend, com foco em qualidade de código, performance, escalabilidade e produtividade do desenvolvimento.",
+      en: "Working on the development and maintenance of full-stack applications for an energy efficiency and carbon emissions management platform. Building new features, evolving APIs, and modernizing frontend architecture, with a focus on code quality, performance, scalability, and developer productivity.",
+    },
+    home: {
+      summary: {
+        pt: "Responsável pelo desenvolvimento e evolução de aplicações full stack, atuando na criação de funcionalidades, manutenção de APIs e modernização da arquitetura frontend, com foco em qualidade de código, performance e confiabilidade.",
+        en: "Responsible for developing and evolving full-stack applications, working on feature implementation, API maintenance, and frontend architecture modernization, with a focus on code quality, performance, and reliability.",
+      },
+      impact: {
+        pt: "Melhorei a performance e a eficiência das aplicações, reduzi significativamente o tempo de carregamento de telas com grandes volumes de dados, otimizei operações no frontend e modernizei o ambiente de desenvolvimento com a migração de Webpack para Vite. Também implementei funcionalidades que ampliaram as possibilidades de análise e exportação de dados da plataforma.",
+        en: "Improved application performance and efficiency by reducing loading times for screens handling large datasets, optimizing frontend operations, and modernizing the development environment through the migration from Webpack to Vite. Also delivered features that expanded the platform's data analysis and export capabilities.",
+      },
     },
     responsibilities: {
       pt: [
-        "Extrair responsabilidades de dados do frontend para um serviço de API dedicado.",
-        "Definir a arquitetura do backend e documentar as APIs com Swagger.",
-        "Otimizar consultas e o consumo de dados das telas de maior volume.",
+        "Desenvolvimento de funcionalidades full stack, implementando e integrando componentes React e serviços backend em Node.js.",
+        "Evolução e manutenção de APIs REST com Node.js, incluindo versionamento, modelagem e consultas em PostgreSQL, validação de contratos com Zod, documentação com Swagger e implementação de paginação e rate limiting.",
+        "Refatoração e otimização de interfaces React, aplicando técnicas como memoização, code splitting e lazy loading para melhorar a performance e a eficiência de renderização.",
+        "Organização da arquitetura frontend utilizando Feature-Driven Architecture e padrões Container/Presentational e Hooks, além de documentação de componentes e funções com JSDoc.",
+        "Desenvolvimento de funcionalidades de exportação de dados em Excel e CSV no backend, incluindo geração de planilhas formatadas e gráficos, com integração ao frontend.",
+        "Modernização da infraestrutura frontend, migrando a aplicação de Webpack para Vite e reestruturando o fluxo de desenvolvimento para utilizar Hot Module Replacement (HMR).",
+        "Desenvolvimento de testes automatizados para componentes e interfaces utilizando Jest.",
       ],
       en: [
-        "Extract data responsibilities from the frontend into a dedicated backend API service.",
-        "Define the backend architecture and document the APIs with Swagger.",
-        "Optimize queries and data consumption on the highest-volume screens.",
+        "Developing full-stack features by implementing and integrating React components with Node.js backend services.",
+        "Evolving and maintaining REST APIs with Node.js, including API versioning, PostgreSQL data modeling and queries, schema validation with Zod, API documentation with Swagger, pagination, and rate limiting.",
+        "Refactoring and optimizing React interfaces using techniques such as memoization, code splitting, and lazy loading to improve performance and rendering efficiency.",
+        "Structuring frontend architecture using Feature-Driven Architecture and Container/Presentational and Hooks patterns, while documenting components and functions with JSDoc.",
+        "Developing backend data export features for Excel and CSV files, including formatted spreadsheets and chart generation, integrated with the frontend.",
+        "Modernizing the frontend infrastructure by migrating the application from Webpack to Vite and restructuring the development workflow to enable Hot Module Replacement (HMR).",
+        "Developing automated tests for UI components and interfaces using Jest.",
       ],
     },
     results: {
       pt: [
-        "Reduzi em 40% o consumo de CPU e memória do servidor frontend ao isolar responsabilidades em um serviço backend estruturado com Clean Architecture, DDD e Modular Monolith.",
-        "Reduzi em 80% o tempo de carregamento de uma tela com mais de 90 mil registros, de cerca de 5s para 1s, com paginação Limit/Offset no PostgreSQL e TanStack Query: cache, invalidação, Query Keys dinâmicas, prefetching preditivo e Stale-While-Revalidate.",
-        "Reduzi de O(n²) para O(n) a complexidade de operações no frontend, trocando buscas lineares repetitivas por Hash Maps pré-indexados.",
+        "Transformei uma necessidade recorrente dos usuários em uma funcionalidade integrada à plataforma, permitindo exportar dados em Excel e CSV, com planilhas formatadas e gráficos gerados automaticamente.",
+        "Modernizei o ambiente de desenvolvimento frontend com a migração de Webpack para Vite, eliminando limitações do fluxo anterior e proporcionando atualizações instantâneas durante o desenvolvimento, com ganhos de produtividade.",
+        "Reduzi em aproximadamente 80% o tempo de carregamento de uma tela com mais de 90 mil registros, de cerca de 5 segundos para 1 segundo, utilizando paginação no backend e estratégias de cache e carregamento com TanStack Query.",
+        "Reduzi de O(n²) para O(n) a complexidade de operações no frontend, substituindo buscas lineares repetitivas por estruturas de dados pré-indexadas com Hash Maps.",
       ],
       en: [
-        "Cut frontend server CPU and memory consumption by 40% by isolating responsibilities into a backend service structured with Clean Architecture, DDD, and Modular Monolith.",
-        "Cut the loading time of a screen processing more than 90,000 records by 80%, from about 5s to 1s, with Limit/Offset pagination in PostgreSQL and TanStack Query: caching, invalidation, dynamic Query Keys, predictive prefetching, and Stale-While-Revalidate.",
-        "Reduced frontend operation complexity from O(n²) to O(n) by replacing repetitive linear searches with pre-indexed Hash Maps.",
+        "Turned a recurring user need into an integrated platform feature, enabling data exports to Excel and CSV with automatically generated charts and formatted spreadsheets.",
+        "Modernized the frontend development environment by migrating from Webpack to Vite, addressing limitations in the previous workflow and enabling instant updates during development through HMR, improving developer productivity.",
+        "Reduced the loading time of a screen handling over 90,000 records by approximately 80%, from around 5 seconds to 1 second, using backend pagination and caching and data-fetching strategies with TanStack Query.",
+        "Reduced the time complexity of frontend operations from O(n²) to O(n) by replacing repeated linear searches with pre-indexed Hash Map structures.",
       ],
     },
     technologies: [
@@ -78,8 +98,8 @@ export const experience: Experience[] = [
       en: "Remote, Brazil",
     },
     summary: {
-      pt: "Dois anos construindo a base de frontend do produto: componentes reutilizáveis, a biblioteca interna e os estados que sustentam telas assíncronas.",
-      en: "Two years building the product's frontend foundation: reusable components, the internal library, and the states that keep asynchronous screens honest.",
+      pt: "Contribuí para o desenvolvimento de aplicações web, com foco na criação de componentes reutilizáveis, melhoria da experiência do usuário e otimização de interfaces. Trabalhei com React e TypeScript em um ambiente de desenvolvimento colaborativo, participando da evolução de funcionalidades e da biblioteca interna de componentes.",
+      en: "Contributed to web application development, focusing on reusable components, user experience improvements, and interface optimization. Worked with React and TypeScript in a collaborative development environment, contributing to feature development and the evolution of the internal component library.",
     },
     responsibilities: {
       pt: [
@@ -134,8 +154,8 @@ export const experience: Experience[] = [
       en: "Remote, Brazil",
     },
     summary: {
-      pt: "Automação da coleta e preparação de dados de múltiplas plataformas, e uma pipeline de Machine Learning para análise de disponibilidade de crédito.",
-      en: "Automation of data collection and preparation across multiple platforms, plus a Machine Learning pipeline for credit availability analysis.",
+      pt: "Desenvolvi soluções de automação e processamento de dados utilizando Python, integrando diferentes fontes e sistemas por meio de APIs e bancos de dados. Atuei na automatização de processos operacionais e no desenvolvimento de soluções orientadas a dados, incluindo aplicações de Machine Learning.",
+      en: "Developed automation and data processing solutions using Python, integrating different data sources and systems through APIs and databases. Worked on automating operational workflows and building data-driven solutions, including Machine Learning applications.",
     },
     responsibilities: {
       pt: [
@@ -190,8 +210,8 @@ export const experience: Experience[] = [
       en: "Remote, Brazil",
     },
     summary: {
-      pt: "Projetos como freelancer: verificação documental com visão computacional e LLMs, e integrações assíncronas entre CRMs e aplicações de mensageria.",
-      en: "Freelance work: document verification with computer vision and LLMs, and asynchronous integrations between CRMs and messaging applications.",
+      pt: "Desenvolvi soluções de software sob demanda, incluindo automações, integrações entre sistemas e aplicações baseadas em Inteligência Artificial. Trabalhei desde o levantamento de requisitos até a implementação e entrega, utilizando Python, APIs, processamento de documentos, Computer Vision e LLMs.",
+      en: "Developed custom software solutions, including workflow automation, system integrations, and AI-powered applications. Worked across the entire development lifecycle, from requirements gathering to implementation and delivery, using Python, APIs, document processing, Computer Vision, and LLMs.",
     },
     responsibilities: {
       pt: [

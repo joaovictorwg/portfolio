@@ -527,18 +527,14 @@ body::before {
   box-shadow: 12px 12px 0 var(--foreground);
 }
 
+/* No escuro a sombra do cream do foreground é clara demais ao lado do fundo
+   sage; usa o mesmo verde do selo "Software engineer · Brazil". */
+.dark .hero-visual__photo {
+  box-shadow: 12px 12px 0 var(--color-olive);
+}
+
 .hero-visual__photo img {
   filter: saturate(0.82) contrast(1.04);
-}
-
-.hero-visual__network {
-  pointer-events: none;
-  opacity: 0.38;
-  mix-blend-mode: multiply;
-}
-
-.hero-visual__network .system-network {
-  min-height: 100%;
 }
 
 @media (max-width: 1023px) {

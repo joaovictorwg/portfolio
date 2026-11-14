@@ -1,8 +1,10 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildAlternates } from "@/i18n/metadata";
 import { profile } from "@/content/profile";
+import { TechGroups } from "@/components/TechGroups";
 import { Tag } from "@/components/ui/Tag";
 import { Reveal } from "@/components/ui/Reveal";
+import { DownloadButton } from "@/components/ui/DownloadButton";
 import { localize } from "@/lib/localize";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -42,6 +44,11 @@ export default async function AboutPage({ params }: Props) {
                 <p className="text-sm text-muted">
                   {localize(item.institution, locale)} · {localize(item.period, locale)}
                 </p>
+                {item.diploma ? (
+                  <DownloadButton href={item.diploma} className="mt-3">
+                    {t("diplomaLink")}
+                  </DownloadButton>
+                ) : null}
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {localize(item.coursework, locale).map((course) => (
                     <Tag key={course}>{course}</Tag>
@@ -71,18 +78,7 @@ export default async function AboutPage({ params }: Props) {
           <h2 className="font-display text-3xl font-semibold tracking-tight">
             {t("stack")}
           </h2>
-          <ul className="mt-4 space-y-5">
-            {profile.skillGroups.map((group) => (
-              <li key={group.category.en}>
-                <p className="text-sm text-muted">{localize(group.category, locale)}</p>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
-                    <Tag key={item}>{item}</Tag>
-                  ))}
-                </div>
-              </li>
-            ))}
-          </ul>
+          <TechGroups groups={profile.skillGroups} locale={locale} className="mt-4" />
         </section>
       </Reveal>
     </div>

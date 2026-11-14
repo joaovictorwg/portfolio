@@ -4,11 +4,13 @@ import { buildAlternates } from "@/i18n/metadata";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getProjectSlugs } from "@/content/projects";
 import { Tag } from "@/components/ui/Tag";
-import { ProjectCover } from "@/components/ProjectCover";
+import { GitHubIcon } from "@/components/ui/GitHubIcon";
+import { TechGroups } from "@/components/TechGroups";
 import { Reveal } from "@/components/ui/Reveal";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { localize } from "@/lib/localize";
+import { groupTechnologies } from "@/lib/tech-groups";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -69,7 +71,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               href={project.links.demo}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm text-accent-fg transition hover:brightness-110"
+              className="inline-flex items-center gap-2 border-2 border-ink bg-background px-5 py-2.5 text-sm text-foreground shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-sage hover:shadow-none"
             >
               {t("demo")} <span aria-hidden>↗</span>
             </a>
@@ -78,7 +80,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             <a
               href={project.links.monograph}
               download
-              className="inline-flex items-center gap-2 rounded-full bg-signal px-4 py-2 text-sm text-signal-fg transition hover:brightness-110"
+              className="inline-flex items-center gap-2 border-2 border-ink bg-background px-5 py-2.5 text-sm text-foreground shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-sage hover:shadow-none"
             >
               {t("monograph")} <span aria-hidden>↓</span>
             </a>
@@ -88,8 +90,9 @@ export default async function ProjectDetailPage({ params }: Props) {
               href={project.links.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm transition hover:border-accent hover:text-accent"
+              className="inline-flex items-center gap-2 border-2 border-ink bg-accent px-5 py-2.5 text-sm text-accent-fg shadow-[4px_4px_0_var(--foreground)] transition hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-none"
             >
+              <GitHubIcon />
               {t("github")} <span aria-hidden>↗</span>
             </a>
           ) : null}
@@ -97,13 +100,13 @@ export default async function ProjectDetailPage({ params }: Props) {
         </Reveal>
       )}
 
-      {project.images.length > 0 ? (
+      {project.images.length > 0 && !project.hideScreenshots ? (
         <Reveal>
           <section className="mt-12" aria-label={t("screenshots")}>
             <h2 className="font-display text-3xl font-semibold">{t("screenshots")}</h2>
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {project.images.map((image) => (
-                <figure key={image.src} className="overflow-hidden rounded-xl border border-border bg-surface">
+                <figure key={image.src} className="overflow-hidden border-2 border-ink bg-surface">
                   <div className="relative aspect-[16/10] bg-background">
                     <Image
                       src={image.src}
@@ -114,7 +117,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                       className="object-cover"
                     />
                   </div>
-                  <figcaption className="px-4 py-3 text-sm text-muted">
+                  <figcaption className="border-t-2 border-ink px-4 py-3 text-sm text-muted">
                     {localize(image.alt, locale)}
                   </figcaption>
                 </figure>
@@ -122,15 +125,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
           </section>
         </Reveal>
-      ) : (
-        <Reveal>
-          <figure className="mt-12 overflow-hidden rounded-xl border border-border bg-surface">
-            <div className="relative aspect-[16/10]">
-              <ProjectCover className="absolute inset-0" />
-            </div>
-          </figure>
-        </Reveal>
-      )}
+      ) : null}
 
       <Reveal>
         <section className="mt-10">
@@ -183,11 +178,11 @@ export default async function ProjectDetailPage({ params }: Props) {
           <h2 className="text-sm font-medium tracking-wide text-muted uppercase">
             {t("technologies")}
           </h2>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {project.technologies.map((item) => (
-              <Tag key={item}>{item}</Tag>
-            ))}
-          </div>
+          <TechGroups
+            groups={groupTechnologies(project.technologies)}
+            locale={locale}
+            className="mt-3"
+          />
         </section>
       </Reveal>
 

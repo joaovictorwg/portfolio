@@ -1,14 +1,9 @@
 import type { Project } from "../types";
-import fluxogramaImg from "../../../imgs/holmes/fluxograma.png";
 
 export const holmesDocumentos: Project = {
   id: "holmes-documentos",
   slug: "holmes-documentos",
   featured: false,
-  badge: {
-    pt: "Clientes",
-    en: "Client work",
-  },
   title: {
     pt: "Automação de documentos no Holmes",
     en: "Document automation in Holmes",
@@ -53,15 +48,7 @@ export const holmesDocumentos: Project = {
       "One validator per document type, registered in a map: a new document only needs a module exposing `validar(arquivo, json)`, and the orchestrator stays untouched.",
     ],
   },
-  images: [
-    {
-      src: fluxogramaImg.src,
-      alt: {
-        pt: "Fluxograma da automação: do monitoramento do e-mail e acesso ao processo no Holmes até a análise com IA e a aprovação ou pendência do processo",
-        en: "Automation flowchart: from email monitoring and accessing the process in Holmes to AI analysis and approving or flagging the process",
-      },
-    },
-  ],
+  images: [],
   links: {
     demo: null,
     github: null,

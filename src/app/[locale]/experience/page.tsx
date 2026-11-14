@@ -1,7 +1,7 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { buildAlternates } from "@/i18n/metadata";
 import { experience } from "@/content/experience";
-import { Tag } from "@/components/ui/Tag";
+import { TechTag } from "@/components/ui/TechTag";
 import { Reveal } from "@/components/ui/Reveal";
 import { VineRail } from "@/components/ui/VineRail";
 import { localize } from "@/lib/localize";
@@ -62,7 +62,7 @@ export default async function ExperiencePage({ params }: Props) {
             </ul>
             <div className="mt-4 flex flex-wrap gap-1.5">
               {job.technologies.map((tech) => (
-                <Tag key={tech}>{tech}</Tag>
+                <TechTag key={tech} name={tech} />
               ))}
             </div>
           </li>

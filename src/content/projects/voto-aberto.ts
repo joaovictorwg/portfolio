@@ -13,8 +13,8 @@ export const votoAberto: Project = {
     en: "Voto Aberto",
   },
   summary: {
-    pt: "Painel eleitoral com comparecimento e resultados do 1º e do 2º turno em 5.571 municípios, série desde 1989.",
-    en: "Election panel with turnout and presidential results for both rounds across 5,571 municipalities, series since 1989.",
+    pt: "Painel eleitoral com comparecimento e resultados do 1º e 2º turno em 5.571 municípios, série desde 1989, mapa interativo e assistente de IA sobre as próprias APIs.",
+    en: "Election panel with turnout and presidential results for both rounds across 5,571 municipalities, a series since 1989, an interactive map, and an AI assistant over the app's own APIs.",
   },
   problem: {
     pt: "Publicar número eleitoral exige que toda afirmação seja conferível na fonte e que a comparação entre turnos não seja lida como causal. Era preciso cruzar bases do TSE com granularidade desigual por ano (1989 só por UF, 2002+ por seção) sem imputar lacunas, e responder perguntas em tempo real sem carregar centenas de KB de payload para o modelo.",

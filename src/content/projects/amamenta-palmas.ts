@@ -10,17 +10,13 @@ export const amamentaPalmas: Project = {
   id: "amamenta-palmas",
   slug: "amamenta-palmas",
   featured: true,
-  badge: {
-    pt: "MVP",
-    en: "MVP",
-  },
   title: {
     pt: "Amamenta Palmas",
     en: "Amamenta Palmas",
   },
   summary: {
-    pt: "MVP de gestão para banco de leite humano hospitalar, em parceria com a universidade. Atuei como Tech Lead.",
-    en: "MVP for a hospital human milk bank, built with the university. I worked as Tech Lead.",
+    pt: "MVP de gestão para banco de leite humano hospitalar, em parceria com a universidade, como Tech Lead — do cadastro de doadoras à distribuição, com rastreio de cada frasco.",
+    en: "MVP for a hospital human milk bank built with the university, where I worked as Tech Lead — from donor registration to distribution, tracing every bottle.",
   },
   problem: {
     pt: "O banco de leite operava com controles fragmentados e precisava rastrear cada frasco com segurança sanitária: cadastro de doadoras, agendamento de visitas, coleta, pasteurização, estoque e distribuição. Perder histórico clínico ou logístico não era uma opção.",

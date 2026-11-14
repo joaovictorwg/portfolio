@@ -44,12 +44,14 @@
     "contactHeading": "Entre em contato!",
     "contactTitle": "Vamos conversar",
     "contactIntro": "Tem um problema interessante, uma equipe construindo algo ou só quer trocar ideia? Entre em contato em algum dos canais abaixo.",
-    "resumeLink": "Baixar currículo"
+    "resumeLink": "Baixar currículo",
+    "diplomaLink": "Baixar diploma"
   },
   "About": {
     "title": "Sobre",
     "intro": "Perfil profissional",
     "education": "Formação",
+    "diplomaLink": "Baixar diploma",
     "interests": "O que gosto de desenvolver",
     "stack": "Tecnologias"
   },

@@ -2,7 +2,8 @@ import type { Project } from "@/content/types";
 import type { Profile } from "@/content/types";
 import { FeaturedProjectsCarousel } from "./FeaturedProjectsCarousel";
 import { Reveal } from "./ui/Reveal";
-import { Tag } from "./ui/Tag";
+import { TechGroups } from "./TechGroups";
+import { DownloadButton } from "./ui/DownloadButton";
 import { localize } from "@/lib/localize";
 
 export function HomeRightColumn({
@@ -17,6 +18,7 @@ export function HomeRightColumn({
   aboutLabel,
   aboutTitle,
   educationTitle,
+  diplomaLink,
   stackTitle,
   interestsTitle,
 }: {
@@ -31,6 +33,7 @@ export function HomeRightColumn({
   aboutLabel: string;
   aboutTitle: string;
   educationTitle: string;
+  diplomaLink: string;
   stackTitle: string;
   interestsTitle: string;
 }) {
@@ -65,6 +68,11 @@ export function HomeRightColumn({
                 <p className="text-muted">
                   {localize(item.institution, locale)} · {localize(item.period, locale)}
                 </p>
+                {item.diploma ? (
+                  <DownloadButton href={item.diploma} className="mt-2">
+                    {diplomaLink}
+                  </DownloadButton>
+                ) : null}
               </div>
             ))}
           </div>
@@ -73,11 +81,12 @@ export function HomeRightColumn({
         <Reveal delay={0.12} className="mt-7 space-y-7">
           <div>
             <h3 className="font-display text-xl font-bold uppercase">{stackTitle}</h3>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {profile.technologies.map((technology) => (
-                <Tag key={technology}>{technology}</Tag>
-              ))}
-            </div>
+            <TechGroups
+              groups={profile.skillGroups}
+              locale={locale}
+              compact
+              className="mt-3"
+            />
           </div>
           <div>
             <h3 className="font-display text-xl font-bold uppercase">{interestsTitle}</h3>

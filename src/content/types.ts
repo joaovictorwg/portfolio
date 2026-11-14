@@ -18,6 +18,8 @@ export type Project = {
   architecture: string[];
   decisions: Localized<string[]>;
   images: { src: string; alt: Localized<string> }[];
+  /** Oculta a galeria de telas na página de detalhe; a imagem continua como capa do card. */
+  hideScreenshots?: boolean;
   links: {
     demo: string | null;
     github: string | null;
@@ -38,6 +40,13 @@ export type Experience = {
   period: Localized<string>;
   location: Localized<string>;
   summary: Localized<string>;
+  /** Conteúdo enxuto exibido na home; a página /experience usa os campos completos. */
+  home?: {
+    /** Resumo curto; cai em summary quando ausente. */
+    summary?: Localized<string>;
+    /** Frase de impacto; cai no primeiro resultado quando ausente. */
+    impact?: Localized<string>;
+  };
   responsibilities: Localized<string[]>;
   results: Localized<string[]>;
   technologies: string[];
@@ -51,6 +60,8 @@ export type Education = {
   program: Localized<string>;
   institution: Localized<string>;
   period: Localized<string>;
+  /** Caminho público do PDF do diploma; exibe o botão de download quando presente. */
+  diploma?: string;
   coursework: Localized<string[]>;
 };
 
