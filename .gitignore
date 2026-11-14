@@ -40,3 +40,6 @@ yarn-error.log*
 .open-next/
 .wrangler/
 
+# cache do binding nativo do swc (ver scripts/cloudflare-build.mjs)
+.swc-cache/
+

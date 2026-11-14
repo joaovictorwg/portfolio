@@ -7,7 +7,7 @@
     "build": "node node_modules/next/dist/bin/next build",
     "start": "node node_modules/next/dist/bin/next start",
     "lint": "eslint",
-    "build:cloudflare": "node node_modules/@opennextjs/cloudflare/dist/cli/index.js build",
+    "build:cloudflare": "node scripts/cloudflare-build.mjs",
     "preview:cloudflare": "wrangler dev",
     "deploy:cloudflare": "wrangler deploy"
   },
